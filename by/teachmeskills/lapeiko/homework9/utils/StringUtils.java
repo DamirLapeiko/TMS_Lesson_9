@@ -43,8 +43,8 @@ public class StringUtils {
     public static boolean isRussian(char[] chars) {
         boolean isRussian = false;
         for (char i = 0; i < chars.length; i++) {
-            if ((chars[i] >= 'а' && chars[i] <= 'я') || chars[i] == 'ё' ||
-                    (chars[i] >= 'А' && chars[i] <= 'Я') || chars[i] == 'Ё') {
+            if ((chars[i] >= 'А' && chars[i] <= 'я') || chars[i] == 'ё' ||
+                    chars[i] == 'Ё') {
                 isRussian = true;
             } else {
                 isRussian = false;
