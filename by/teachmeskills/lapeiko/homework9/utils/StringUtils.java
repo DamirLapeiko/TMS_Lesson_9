@@ -11,13 +11,13 @@ public class StringUtils {
  */
     public static void print(char[] chars) {
         for (char i : chars) {
-            System.out.println(i);
+            System.out.print(chars[i]);
         }
     }
 
     public static void println(char[] chars) {
         print(chars);
-        System.out.print('\n');
+        System.out.println();
     }
 
     /* Task2
@@ -28,7 +28,7 @@ public class StringUtils {
      */
     public static boolean isBlank(char[] chars) {
         for (char i = 0; i < chars.length; i++) {
-            if (!Character.isWhitespace(i)) {
+            if (!Character.isWhitespace(chars[i])) {
                 return false;
             }
         }
@@ -41,16 +41,13 @@ public class StringUtils {
     полностью из символов русского алфавита.
      */
     public static boolean isRussian(char[] chars) {
-        boolean isRussian = false;
         for (char i = 0; i < chars.length; i++) {
-            if ((chars[i] >= 'А' && chars[i] <= 'я') || chars[i] == 'ё' ||
-                    chars[i] == 'Ё') {
-                isRussian = true;
-            } else {
-                isRussian = false;
+            if ((chars[i] < 'А' || chars[i] > 'я') && chars[i] != 'ё' &&
+                    chars[i] != 'Ё') {
+                return false;
             }
         }
-        return isRussian;
+        return true;
     }
 
     /* Task4
@@ -62,11 +59,14 @@ public class StringUtils {
     «Hello world» содержит «world», «Hello» не содержит «Hi».
     */
     public static boolean contains(char[] chars, char[] subChars) {
-        if (chars.length == 0 || subChars.length > chars.length) {
+        if (chars.length == 0) {
             throw new IllegalArgumentException("Error. Verify your program.");
         }
+        if (subChars.length > chars.length){
+            return false;
+        }
         int sum = 0;
-        for (int i = 0; i < chars.length - 1; i++) {
+        for (int i = 0; i < chars.length; i++) {
             for (int j = 0; j < subChars.length; j++) {
                 if (chars[i + j] != subChars[j]) {
                     break;
@@ -93,8 +93,18 @@ public class StringUtils {
     Для возведения в степень есть функция int Math.pow(int, int).
     Pow – сокращение от power.
          */
-//        public static void parseInt (char[] chars){
-//        }
+        public static int parseInt (char[] chars){
+            int sum = 0;
+            int zeroASCII = '0';
+            for (int i = 0; i < chars.length; i++) {
+                if(chars[i] < '0' || chars[i] > '9'){
+                    throw new IllegalArgumentException("Wrong symbols");
+                }
+                int tmpASCII = chars[i];
+                sum = (sum * 10) + (tmpASCII - zeroASCII);
+            }
+            return sum;
+        }
     public static char[] getCharArray(){
         Scanner sc = new Scanner(System.in);
         return sc.nextLine().toCharArray();

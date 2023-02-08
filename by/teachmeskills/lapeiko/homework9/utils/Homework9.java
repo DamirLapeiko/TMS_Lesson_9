@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Homework9 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("What task do you want to see? Enter a number from 2 to 4: ");
+        System.out.println("What task do you want to see? Enter a number from 2 to 5: ");
         int taskNumber = sc.nextInt();
         switch (taskNumber) {
             case 2 -> {
@@ -38,6 +38,12 @@ public class Homework9 {
                 char[] string1 = StringUtils.getCharArray();
                 System.out.println("Does second array contain first array?");
                 System.out.println(StringUtils.contains(string, string1));
+            }
+            case 5 -> {
+                char[] string;
+                System.out.print("Write different numbers: ");
+                string = StringUtils.getCharArray();
+                System.out.println(StringUtils.parseInt(string));
             }
                 default -> System.out.println("Wrong number of task");
             }
